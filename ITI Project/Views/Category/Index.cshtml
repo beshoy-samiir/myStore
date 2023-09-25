@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Category>
+
+<h1 class="alert alert-success">Categories</h1>
+
+<a asp-controller="Category" asp-action="GetCreateView" class="btn btn-success mb-1">Add New Category</a>
+
+<form method="get" asp-controller="Category" asp-action="GetIndexView">
+    <div class="input-group">
+        <input type="text" name="search" value="@ViewBag.Search" />
+        <button type="submit" class="btn btn-secondary input-group-append"><i class="bi bi-search"></i></button>
+    </div>
+</form>
+
+@if (Model.Count() > 0)
+{
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(d=>d.Id)</th>
+                <th>@Html.DisplayNameFor(d=>d.Name)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>
+                        <a asp-controller="Category" asp-action="GetDetailsView" asp-route-id="@item.Id" class="btn btn-outline-warning"><i class="bi bi-list-ul"></i></a>
+                        <a asp-controller="Category" asp-action="GetEditView" asp-route-id="@item.Id" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-controller="Category" asp-action="GetDeleteView" asp-route-id="@item.Id" class="btn btn-outline-success"><i class="bi bi-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1 class="alert alert-danger text-center">There is no category to display.</h1>
+}
+
+
+<partial name="_TSContacts"/>

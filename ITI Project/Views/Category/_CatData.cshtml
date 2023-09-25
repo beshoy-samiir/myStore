@@ -1,0 +1,26 @@
+﻿@{
+    Category cat = (Category)ViewBag.CurrentDept;
+}
+
+<div class="row">
+    <dl class="col-6 row">
+        <dt class="col-2">@Html.DisplayNameFor(d => cat.Id)</dt>
+        <dd class="col-10">@Model.Id</dd>
+
+        <dt class="col-2">@Html.DisplayNameFor(d => cat.Name)</dt>
+        <dd class="col-10">@Model.Name</dd>
+    </dl>
+
+</div>
+
+<ul class="col-4 list-group">
+    <li class="list-group-item active">Product</li>
+    @foreach (var product in cat.products)
+    {
+        <a asp-controller="Product" asp-action="GetDetailsView" asp-route-id="@product.Id" style="text-decoration:none">
+        <li class="list-group-item list-group-item-action">
+                @product.Name (@product.Price.ToString("C0"))
+        </li>
+        </a>
+    }
+</ul>

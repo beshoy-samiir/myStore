@@ -1,0 +1,22 @@
+﻿@{
+    Product prod = (Product)ViewBag.CurrentDept;
+}
+
+<div class="row">
+    <dl class="col-6 row">
+        <dt class="col-2">@Html.DisplayNameFor(d => prod.Id)</dt>
+        <dd class="col-10">@Html.DisplayFor(d => prod.Id)</dd>
+
+        <dt class="col-2">@Html.DisplayNameFor(d => prod.Name)</dt>
+        <dd class="col-10">@Html.DisplayFor(d => prod.Name)</dd>
+
+        <dt class="col-2">@Html.DisplayNameFor(d => prod.Description)</dt>
+        <dd class="col-10">@Html.DisplayFor(d => prod.Description)</dd>
+
+        <dt class="col-2">@Html.DisplayNameFor(d => prod.Price)</dt>
+        <dd class="col-10">@Html.DisplayFor(d => prod.Price)</dd>
+    </dl>
+
+    <img src="@Model.ImagePath" class="card col-3" style="object-fit:contain" />
+
+</div>

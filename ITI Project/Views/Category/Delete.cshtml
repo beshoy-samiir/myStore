@@ -1,0 +1,12 @@
+﻿@model Category
+
+<h1 class="alert alert-danger">Are you sure you want to delete @Model.Name Category ?</h1>
+
+<partial name="_CatData" />
+
+<form method="post" asp-controller="Category" asp-action="DeleteCurrent">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+
+<a asp-controller="Category" asp-action="GetIndexView">Back to List</a>

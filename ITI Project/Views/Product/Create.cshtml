@@ -1,0 +1,54 @@
+﻿@model Product
+<h1 class="alert alert-success text-center">Create Product</h1>
+
+<div class="row">
+    <form class="col-4" method="post" asp-controller="Product" asp-action="AddNew" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div>
+            <label asp-for="Name"></label>
+            <input type="text" asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label asp-for="Description"></label>
+            <input type="text" asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label asp-for="Price"></label>
+            <input type="number" asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label asp-for="ImagePath"></label>
+            <input type="file" name="imageFormFile" id="imageFormFile" accept=".png,.jpg,.jpeg" class="form-control" onchange="SetImgSrc()" />
+        </div>
+
+        <div>
+            <label asp-for="CatId"></label>
+            <select asp-for="CatId" asp-items="@(new SelectList(ViewBag.AllCategories, "Id","Name"))" class="form-control">
+                <option selected disabled>Select...</option>
+            </select>
+            <span asp-validation-for="CatId" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-2">Add</button>
+    </form>
+
+    <img src="" id="ProdImage" class="col-4 card" style="object-fit:contain" />
+</div>
+
+<a asp-controller="Product" asp-action="GetIndexView">Back to List</a>
+
+@section Scripts{
+    <script>
+        function SetImgSrc() {
+            document.getElementById("ProdImage").src = window.URL.createObjectURL(document.getElementById("imageFormFile").files[0]);
+        }
+    </script>
+}
+

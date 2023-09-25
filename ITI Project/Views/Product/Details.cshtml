@@ -1,0 +1,11 @@
+﻿@model Product
+
+<h1 class="alert alert-warning">@Model.Name Details</h1>
+
+<partial name="_ProdData" />
+
+<a asp-controller="Product" asp-action="GetIndexView">Back to List</a>
+
+<br />
+
+<partial name="_TSContacts" />
